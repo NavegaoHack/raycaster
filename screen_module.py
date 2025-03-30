@@ -37,6 +37,25 @@ class Screen:
                 )
             )
 
+    def draw_player(self, player_pos, player_dir):
+        radius = 10
+        pos = player_pos * self.tile_size
+        dir = pos + (player_dir * radius)
+        pg.draw.circle(
+            self.w,
+            "white",
+            pos,
+            radius
+        )
+        pg.draw.line(
+            self.w,
+            "purple",
+            pos,
+            dir,
+            2
+        )
+
+
 
     def render(self):
         pg.display.flip()

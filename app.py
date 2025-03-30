@@ -5,7 +5,7 @@ from player_module import *
 
 # pygame setup
 size = 480
-tiles = 16
+tiles = 32 
 fps = 30
 
 init()
@@ -19,9 +19,12 @@ while screen.run:
     # poll for events
     screen.event()
 
+    player.move()
+
     # fill the screen with a color to wipe away anything from last frame
     screen.draw_bg()
     screen.draw_walls(map.get())
+    screen.draw_player(player.pos, player.dir)
 
     # RENDER YOUR GAME HERE
 
