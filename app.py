@@ -1,6 +1,7 @@
 from pygame import init, quit
 from screen_module import *
 from map_module import *
+from player_module import *
 
 # pygame setup
 size = 480
@@ -10,6 +11,7 @@ fps = 30
 init()
 map = Map(tiles)
 screen = Screen(size, fps, tiles)
+player = Player((tiles // 2, tiles // 2), (1, 0), 4)
 
 print(map.get())
 
