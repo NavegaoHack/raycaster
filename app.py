@@ -17,13 +17,15 @@ print(map.get())
 
 while screen.run:
     # poll for events
+
     screen.event()
 
+    player.check_collission(map.m)
     player.move()
 
     # fill the screen with a color to wipe away anything from last frame
     screen.draw_bg()
-    screen.draw_walls(map.get())
+    screen.draw_walls(map.m)
     screen.draw_player(player.pos, player.dir)
 
     # RENDER YOUR GAME HERE
