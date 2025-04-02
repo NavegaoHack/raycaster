@@ -36,6 +36,19 @@ class Screen:
                     bottom_right
                 )
             )
+        
+    def draw_ray(self, player, map):
+        ray = player.pos.copy()
+
+        while (ray.x//1, ray.y//1) not in map:
+            ray += player.step
+        
+        pg.draw.line(
+            self.w,
+            "white",
+            player.pos * self.tile_size,
+            ray * self.tile_size
+        )
 
     def draw_player(self, player_pos, player_dir):
         radius = 10
