@@ -7,7 +7,7 @@ class Player:
         self.pos = pg.Vector2(pos)
         self.dir = pg.Vector2(dir)
         self.step = self.dir / 10
-        self.rotation = rotation
+        self.fov = 60
 
     def rotate(self, deg):
         self.dir = self.dir.rotate(deg)
