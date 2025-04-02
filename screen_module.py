@@ -36,19 +36,54 @@ class Screen:
                     bottom_right
                 )
             )
-        
-    def draw_ray(self, player, map):
-        ray = player.pos.copy()
 
-        while (ray.x//1, ray.y//1) not in map:
-            ray += player.step
         
-        pg.draw.line(
-            self.w,
-            "white",
-            player.pos * self.tile_size,
-            ray * self.tile_size
-        )
+    def draw_ray(self, player, map, size):
+        step = player.step.copy()
+        step = step.rotate(-(player.fov / 2))
+        rotate_inc = player.fov / size
+
+        for each_ray in range(size):
+            ray = player.pos.copy()
+
+            while (ray.x//1, ray.y//1) not in map:
+                ray += step
+            
+            step = step.rotate(rotate_inc)
+            
+            pg.draw.line(
+                self.w,
+                "white",
+                player.pos * self.tile_size,
+                ray * self.tile_size
+            )
+
+    def draw_raycast(self, player, map, size):
+        step = player.step.copy()
+        step = step.rotate(-(player.fov / 2))
+        rotate_inc = player.fov / size
+
+        for each_ray in range(size):
+            ray = player.pos.copy()
+
+            while (ray.x//1, ray.y//1) not in map:
+                ray += step
+
+            distance = ray.distance_to(player.pos)
+            wall_height = (size / 2) / distance
+
+            step = step.rotate(rotate_inc)
+
+            point_up = (each_ray, (size / 2) - wall_height)
+            point_down = (each_ray, (size / 2) + wall_height)
+            
+            pg.draw.line(
+                self.w,
+                "white",
+                point_up,
+                point_down
+            )
+
 
     def draw_player(self, player_pos, player_dir):
         radius = 10

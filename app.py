@@ -25,9 +25,12 @@ while screen.run:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.draw_bg()
-    screen.draw_walls(map.m)
-    screen.draw_ray(player, map.m)
-    screen.draw_player(player.pos, player.dir)
+    if False:
+        screen.draw_walls(map.m)
+        screen.draw_ray(player, map.m, screen.size)
+        screen.draw_player(player.pos, player.dir)
+    else:
+        screen.draw_raycast(player, map.m, screen.size)
 
     # RENDER YOUR GAME HERE
 
