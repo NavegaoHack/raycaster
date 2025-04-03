@@ -3,7 +3,7 @@
 
 | Tile Render Mode | Raycast Render Mode |
 |:---: | :---: |
-|![Raycast render.](/image2.png "Raycast render mode.") |![Raycast Render.](/raycast2.png "Raycast render mode.")
+|![Tile render.](/image1.png "Tile render mode.") |![Raycast Render.](/image2.png "Raycast render mode.")
 
 You can execute and modify as you wish
 
