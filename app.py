@@ -24,12 +24,13 @@ while screen.run:
 
     screen.event()
 
-    player.check_collission(map.m)
-    player.move()
+    if not screen.pause_inputs:
+        player.check_collission(map.m)
+        player.move()
 
     # fill the screen with a color to wipe away anything from last frame
     screen.draw_bg()
-    if False:
+    if screen.change_rendering:
         screen.draw_walls(map.m)
         screen.draw_ray(player, map.m, screen.size)
         screen.draw_player(player.pos, player.dir)

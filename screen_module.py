@@ -12,12 +12,21 @@ class Screen:
         self.clock = pg.time.Clock()
         self.bg = pg.Vector3(163, 67, 67)
         self.diff = self.white - self.bg
+        self.change_rendering = True
+        self.pause_inputs = False
 
     def event(self):
         # pygame.QUIT event means the user clicked X to close your window
         for e in pg.event.get():
             if e.type == pg.QUIT:
                 self.run = False
+            if e.type == pg.KEYDOWN:
+                keys = pg.key.get_pressed()
+                if keys[pg.K_c]:
+                    self.change_rendering = not self.change_rendering
+                if keys[pg.K_p]:
+                    self.pause_inputs = not self.pause_inputs
+                    
 
     def draw_bg(self):
         self.w.fill(self.bg)
