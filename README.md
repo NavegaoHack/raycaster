@@ -1,11 +1,9 @@
 # RAYCASTER | By navegaohack
 # so-simple raycasting videogame written in python
-|:---: | :---: |
-|![Tile render.](/raycast1.png "Tile render mode.") |![Raycast Render.](/raycast2.png "Raycast render mode.")
 
 | Tile Render Mode | Raycast Render Mode |
 |:---: | :---: |
-|![Tile render.](/raycast1.png "Tile render mode.") |![Raycast Render.](/raycast2.png "Raycast render mode.")
+|![Raycast render.](/image2.png "Raycast render mode.") |![Raycast Render.](/raycast2.png "Raycast render mode.")
 
 You can execute and modify as you wish
 
