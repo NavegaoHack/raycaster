@@ -13,4 +13,6 @@ class Map:
     
     def get(self):
         return self.m
-    
+
+    def add_wall(self, pos):
+        self.m.add(pos) 

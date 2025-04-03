@@ -10,6 +10,10 @@ fps = 30
 
 init()
 map = Map(tiles)
+map.add_wall((5, 5))
+map.add_wall((24, 24))
+map.add_wall((24, 25))
+map.add_wall((25, 24))
 screen = Screen(size, fps, tiles)
 player = Player((tiles // 2, tiles // 2), (1, 0), 4)
 

@@ -1,13 +1,17 @@
 import pygame as pg
 
 class Screen:
+    white = pg.Vector3(255, 255, 255)
     run = True
     def __init__(self, size, fps, tiles):
         self.size = size
+        self.half_size = size / 2
         self.tile_size = size / tiles
         self.fps = fps
         self.w = pg.display.set_mode((size, size))
         self.clock = pg.time.Clock()
+        self.bg = pg.Vector3(163, 67, 67)
+        self.diff = self.white - self.bg
 
     def event(self):
         # pygame.QUIT event means the user clicked X to close your window
@@ -16,7 +20,7 @@ class Screen:
                 self.run = False
 
     def draw_bg(self):
-        self.w.fill("purple")
+        self.w.fill(self.bg)
 
     def draw_walls(self, walls):
         for wall in walls:
@@ -57,6 +61,18 @@ class Screen:
                 player.pos * self.tile_size,
                 ray * self.tile_size
             )
+    
+    def color_pseudoalpha(self, wall_height):
+        final_diff = self.diff * (wall_height / self.half_size)
+        bg_color = self.bg + final_diff
+        bg_color_b = pg.Vector3()
+
+        bg_color_b.x = bg_color.x if bg_color.x < 255 else 255 
+        bg_color_b.y = bg_color.y if bg_color.y < 255 else 255 
+        bg_color_b.z = bg_color.z if bg_color.z < 255 else 255 
+
+        return bg_color_b
+
 
     def draw_raycast(self, player, map, size):
         step = player.step.copy()
@@ -71,15 +87,16 @@ class Screen:
 
             distance = ray.distance_to(player.pos)
             wall_height = (size / 2) / distance
+            self.color_pseudoalpha(wall_height) 
 
             step = step.rotate(rotate_inc)
 
             point_up = (each_ray, (size / 2) - wall_height)
             point_down = (each_ray, (size / 2) + wall_height)
-            
+
             pg.draw.line(
                 self.w,
-                "white",
+                self.color_pseudoalpha(wall_height),
                 point_up,
                 point_down
             )
