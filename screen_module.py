@@ -70,7 +70,25 @@ class Screen:
                 player.pos * self.tile_size,
                 ray * self.tile_size
             )
-    
+
+        
+    def draw_one_ray(self, player, map):
+        step = player.step.copy()
+        #step = step.rotate(-(player.fov / 2))
+        #rotate_inc = player.fov / size
+
+        ray = player.pos.copy()
+
+        while (ray.x//1, ray.y//1) not in map:
+            ray += step
+        
+        pg.draw.line(
+            self.w,
+            "white",
+            player.pos * self.tile_size,
+            ray * self.tile_size
+        )
+
     def color_pseudoalpha(self, wall_height):
         final_diff = self.diff * (wall_height / self.half_size)
         bg_color = self.bg + final_diff
@@ -109,6 +127,8 @@ class Screen:
                 point_up,
                 point_down
             )
+
+
 
 
     def draw_player(self, player_pos, player_dir):
